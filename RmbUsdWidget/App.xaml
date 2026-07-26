@@ -1,0 +1,11 @@
+<Application x:Class="RmbUsdWidget.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <SolidColorBrush x:Key="AccentBrush" Color="#1267D6"/>
+        <SolidColorBrush x:Key="MidBrush" Color="#05839A"/>
+        <SolidColorBrush x:Key="MutedBrush" Color="#667085"/>
+        <SolidColorBrush x:Key="DividerBrush" Color="#240B1F36"/>
+    </Application.Resources>
+</Application>

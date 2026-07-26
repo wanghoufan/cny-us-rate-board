@@ -1,0 +1,199 @@
+<Window x:Class="RmbUsdWidget.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="人民币兑美元"
+        Width="360" Height="280"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False">
+    <Window.Resources>
+        <Style x:Key="IconButton" TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBackground" Property="Background" Value="#160B1F36"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PositionYear" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="PositionBand" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="PositionPercent" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Border x:Name="RootBorder"
+            Margin="1"
+            Padding="18,13,14,12"
+            CornerRadius="18"
+            BorderThickness="1"
+            BorderBrush="{DynamicResource FrameBorderBrush}"
+            Background="{DynamicResource CardBackgroundBrush}"
+            TextElement.Foreground="{DynamicResource PrimaryTextBrush}"
+            MouseLeftButtonDown="RootBorder_OnMouseLeftButtonDown">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.18" Color="#52657A"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="34"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <TextBlock Text="人民币兑美元"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="PinButton"
+                            Style="{StaticResource IconButton}"
+                            Content="&#xE840;"
+                            ToolTip="切换始终置顶"
+                            Click="PinButton_OnClick"/>
+                    <Button Style="{StaticResource IconButton}"
+                            Content="&#xE8BB;"
+                            ToolTip="隐藏到系统托盘"
+                            Click="CloseButton_OnClick"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,7,0,3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="53*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" Margin="0,0,13,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="中行现汇买入价"
+                               Foreground="{StaticResource AccentBrush}"
+                               FontWeight="SemiBold"
+                               FontSize="13"/>
+                    <TextBlock Grid.Row="1"
+                               Text="1 美元"
+                               Margin="0,12,0,0"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
+                               FontSize="13"/>
+                    <StackPanel Grid.Row="2" VerticalAlignment="Center">
+                        <TextBlock x:Name="BankRateText"
+                                   Text="—"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   FontSize="40"
+                                   FontWeight="SemiBold"
+                                   FontFamily="Segoe UI Variable Display, Segoe UI"
+                                   TextOptions.TextFormattingMode="Display"/>
+                        <TextBlock Text="人民币"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   FontSize="16"
+                                   Margin="1,-2,0,0"/>
+                    </StackPanel>
+                    <Border Grid.Row="3" Background="{StaticResource DividerBrush}"/>
+                    <TextBlock Grid.Row="4"
+                               Margin="0,8,0,0"
+                               FontSize="11.5"
+                               Foreground="{DynamicResource SecondaryTextBrush}">
+                        <Run Text="官方中间价 "/><Run x:Name="OfficialRateRun" Text="—" Foreground="{StaticResource AccentBrush}"/>
+                    </TextBlock>
+                    <Border Grid.Row="5"
+                            Margin="0,6,0,0"
+                            Padding="7,3"
+                            HorizontalAlignment="Left"
+                            Background="#22F29A2E"
+                            CornerRadius="6">
+                        <TextBlock x:Name="DateText"
+                                   Text="正在读取数据"
+                                   FontSize="10.5"
+                                   Foreground="#A45C00"/>
+                    </Border>
+                </Grid>
+
+                <Border Grid.Column="1"
+                        BorderBrush="{StaticResource DividerBrush}"
+                        BorderThickness="1,0,0,0"
+                        Padding="14,0,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="52"/>
+                            <ColumnDefinition Width="54"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="近1年" Style="{StaticResource PositionYear}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="Band1Text" Text="—" Style="{StaticResource PositionBand}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" x:Name="Percent1Text" Text="—" Style="{StaticResource PositionPercent}"/>
+                        <TextBlock Grid.Row="1" Text="近2年" Style="{StaticResource PositionYear}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="Band2Text" Text="—" Style="{StaticResource PositionBand}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="Percent2Text" Text="—" Style="{StaticResource PositionPercent}"/>
+                        <TextBlock Grid.Row="2" Text="近3年" Style="{StaticResource PositionYear}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" x:Name="Band3Text" Text="—" Style="{StaticResource PositionBand}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" x:Name="Percent3Text" Text="—" Style="{StaticResource PositionPercent}"/>
+                        <TextBlock Grid.Row="3" Text="近5年" Style="{StaticResource PositionYear}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" x:Name="Band5Text" Text="—" Style="{StaticResource PositionBand}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="2" x:Name="Percent5Text" Text="—" Style="{StaticResource PositionPercent}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5,0,0">
+                <Border BorderBrush="{StaticResource DividerBrush}" BorderThickness="0,1,0,0"/>
+                <StackPanel Margin="0,8,0,0" HorizontalAlignment="Right">
+                    <TextBlock Text="位置越高，美元换人民币相对越有利"
+                               FontSize="10.5"
+                               Foreground="{DynamicResource SecondaryTextBrush}"
+                               HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="StatusText"
+                               Text="实际成交以银行为准"
+                               FontSize="9.5"
+                               Margin="0,3,0,0"
+                               Foreground="{StaticResource MutedBrush}"
+                               HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
