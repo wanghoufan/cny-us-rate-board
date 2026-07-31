@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3C4B8132-AADB-4B6A-9CB9-C61000A70D16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RmbUsdWidget", "src\RmbUsdWidget\RmbUsdWidget.csproj", "{86650BB1-C2B5-4BA0-A85C-3A093838447E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F865DADD-1B47-4928-9292-1B516FAEC145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RmbUsdWidget.Tests", "tests\RmbUsdWidget.Tests\RmbUsdWidget.Tests.csproj", "{3E268108-03CE-49CC-AA77-C24C095451A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86650BB1-C2B5-4BA0-A85C-3A093838447E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86650BB1-C2B5-4BA0-A85C-3A093838447E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86650BB1-C2B5-4BA0-A85C-3A093838447E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86650BB1-C2B5-4BA0-A85C-3A093838447E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E268108-03CE-49CC-AA77-C24C095451A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E268108-03CE-49CC-AA77-C24C095451A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E268108-03CE-49CC-AA77-C24C095451A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E268108-03CE-49CC-AA77-C24C095451A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86650BB1-C2B5-4BA0-A85C-3A093838447E} = {3C4B8132-AADB-4B6A-9CB9-C61000A70D16}
+		{3E268108-03CE-49CC-AA77-C24C095451A5} = {F865DADD-1B47-4928-9292-1B516FAEC145}
+	EndGlobalSection
+EndGlobal
