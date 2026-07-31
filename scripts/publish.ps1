@@ -3,7 +3,7 @@ param(
     [ValidateSet("win-x64", "win-arm64")]
     [string]$Runtime = "win-x64",
 
-    [string]$OutputDirectory = "release"
+    [string]$OutputDirectory = "release\win-x64"
 )
 
 $ErrorActionPreference = "Stop"
