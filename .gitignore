@@ -1,7 +1,12 @@
 **/bin/
 **/obj/
 publish/
+release/
+artifacts/runtime/
 qa/
+*.tmp
+*.log
+TestResults/
 design-qa.md
 NuGet.Config
 .vs/
