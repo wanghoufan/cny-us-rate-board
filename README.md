@@ -33,7 +33,7 @@ dotnet run --project .\tests\RmbUsdWidget.Tests
 .\scripts\publish.ps1
 ```
 
-发布产物输出到 `release/win-x64/`。截图、设计审查和实现对照资料位于 `artifacts/ui-audit/` 与 `docs/design/`。
+发布产物输出到 `release/win-x64/`。截图、设计审查和实现对照资料位于 `artifacts/ui-audit/` 与 `docs/qa/design-qa.md`。
 
 ## 项目结构
 
@@ -41,7 +41,7 @@ dotnet run --project .\tests\RmbUsdWidget.Tests
 .
 ├─ src/RmbUsdWidget/       源代码
 ├─ tests/RmbUsdWidget.Tests 自动化测试
-├─ docs/design/            设计审查与说明
+├─ docs/qa/               design-qa.md（设计验收报告）
 ├─ artifacts/ui-audit/     UI 截图和对照资料
 ├─ scripts/                发布脚本
 ├─ release/                本地发布产物，不提交 Git
